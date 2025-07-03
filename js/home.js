@@ -15,5 +15,5 @@ logout.addEventListener('click', function () {
     localStorage.removeItem("userName")
     setTimeout(function () {
         window.location.href = '/pages/login.html'
-    }, 1000) 
+    }, 1000)
 })

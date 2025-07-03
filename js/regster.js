@@ -4,6 +4,9 @@ var userpassword = document.getElementById('password')
 var registerbtn = document.getElementById('registerbtn')
 var succeesMsg = document.getElementById('succeesMsg')
 var errorMsg = document.getElementById('errorMsg')
+var form = document.querySelector('form')
+
+
 var users = [];
 
 if (localStorage.getItem("data") != null) {
@@ -13,10 +16,11 @@ if (localStorage.getItem("data") != null) {
 var validInput = function (input) {
     console.log(input);
 
-    var regex = {
-        username: /^[A-Z][a-z]{2,9}$/,
+    const regex = {
+        username: /^[A-Z][a-z]{2,6}$/,
         Email: /^[a-z0-9-]{2,20}@(gmail)\.(com)$/,
-        password: /^[A-Z][a-z0-9]{3,20}[!@#$?]$/
+        password: /^[a-zA-Z0-9]{4,20}$/
+
     };
 
     if (regex[input.id] && regex[input.id].test(input.value)) {
@@ -30,36 +34,37 @@ var validInput = function (input) {
 
 
 registerbtn.addEventListener('click', function () {
-    for (var i = 0; i < users.length; i++) {
-        if (users[i].Email === userEmail.value) {
-            errorMsg.classList.replace("d-none", "d-block")
-            return;
-        } else {
-            console.log('Error');
-
-        }
-
+    errorMsg.classList.replace('d-none', 'd-block')
+    const matchedUser = users.find(function (user) {
+        return user.Email === userEmail.value;
+    });
+    if (matchedUser) {
+        errorMsg.classList.replace("d-none", "d-block")
+        return;
     }
+
+
+    console.log("functionDD");
+
     var signUsers = {
-        name: userName.value,
-        Email: userEmail.value,
-        password: userpassword.value
+        userName: userName.value,
+        userEmail: userEmail.value,
+        userpassword: userpassword.value
     }
     users.push(signUsers)
     localStorage.setItem("data", JSON.stringify(users))
     succeesMsg.classList.replace("d-none", "d-block")
     setTimeout(function () {
-        window.location.href = 'pages/login.html'
+        window.location.href = '../pages/login.html'
     }, 1000)
 
     console.log(users);
 });
 
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-registerbtn.addEventListener('click', function () {
-    form.addEventListener('submit', function (e) {
-        e.preventDefault()
-    })
+
 })
 userName.addEventListener('input', () => {
     validInput(userName);
