@@ -13,10 +13,7 @@ if (!currentUserEmail) {
 let currentUser = users.find(u => u.email === currentUserEmail);
 
 // 🔹 رسالة الترحيب
-welcomeMessage.innerHTML = currentUser
-    ? `Welcome, ${currentUser}`
-    : "Welcome";
-
+// welcomeMessage.textContent = `مرحبا ${currentUser.email}`;
 // 🔹 Logout
 logoutBtn.addEventListener("click", function (e) {
     e.preventDefault();
