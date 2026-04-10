@@ -3,9 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Smart Login</title>
+    <title>Smart Sign Up</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
     <style>
       body {
         background: #0b1120;
@@ -23,24 +22,58 @@
       input::placeholder {
         color: #ffffffa0;
       }
+      input:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 5px #0d6efd;
+        outline: none;
+      }
+      button:hover {
+        background-color: #0d6efdcc;
+        transform: scale(1.03);
+        transition: 0.2s;
+      }
+      .error {
+        color: #ff6b6b;
+        font-size: 0.9rem;
+        margin-top: -0.8rem;
+        margin-bottom: 1rem;
+        display: none;
+      }
     </style>
   </head>
   <body>
-    <section id="login" class="w-100">
+    <section id="signup" class="w-100">
       <div class="container">
-        <div class="login-content text-center w-75 m-auto p-5 boxShadow">
+        <div class="signup-content text-center w-75 m-auto p-5 my-4 boxShadow">
           <div class="header pb-4">
-            <h1>Smart Login</h1>
+            <h1>Smart Sign Up System</h1>
           </div>
 
-          <div class="mb-3">
+          <div class="content mb-3 text-white">
+            <label for="userNameInput" class="form-label visually-hidden"
+              >Name</label
+            >
+            <input
+              type="text"
+              id="userNameInput"
+              class="form-control text-black mb-2"
+              placeholder="Enter your name"
+            />
+            <p
+              id="userNameErr"
+              class="bg-danger text-center p-1 text-white d-none bg-opacity-75"
+            >
+              Name must be more than 3Charcaters
+            </p>
+            <div id="nameError" class="error">Name is required</div>
+
             <label for="emailInput" class="form-label visually-hidden"
               >Email</label
             >
             <input
               type="email"
               id="emailInput"
-              class="form-control text-white mb-4 bg-transparent"
+              class="form-control text-black mb-2"
               placeholder="Enter your email"
             />
             <p
@@ -49,13 +82,16 @@
             >
               Email not Valid
             </p>
+
+            <div id="emailError" class="error">Valid email is required</div>
+
             <label for="passwordInput" class="form-label visually-hidden"
               >Password</label
             >
             <input
               type="password"
               id="passwordInput"
-              class="form-control text-white mb-4 bg-transparent"
+              class="form-control text-black mb-2"
               placeholder="Enter your password"
             />
             <p
@@ -64,32 +100,33 @@
             >
               Password must be 6 Charcaters
             </p>
+
+            <div id="passError" class="error">Password is required</div>
           </div>
 
           <div class="submit-btn mb-3">
             <button
-              id="loginbtn"
+              id="signUpBtn"
               class="btn btn-primary text-white w-50 d-block mx-auto"
             >
-              LogIn
+              Sign Up
             </button>
           </div>
 
           <div class="account mt-3">
             <p class="text-white">
               Already have an account?
-              <a class="text-decoration-none text-white" href="signup.html"
-                >Sign Up</a
+              <a class="text-decoration-none text-white" href="index.html"
+                >Sign In</a
               >
             </p>
           </div>
         </div>
       </div>
     </section>
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/login.js"></script>
+    <script src="js/regster.js"></script>
   </body>
 </html>

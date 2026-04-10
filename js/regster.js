@@ -1,77 +1,346 @@
-var userName = document.getElementById('username')
-var userEmail = document.getElementById('Email')
-var userpassword = document.getElementById('password')
-var registerbtn = document.getElementById('registerbtn')
-var succeesMsg = document.getElementById('succeesMsg')
-var errorMsg = document.getElementById('errorMsg')
-var form = document.querySelector('form')
+// // let username = document.querySelector("#userNameInput");
+// // let userEmail = document.querySelector("#emailInput");
+// // let password = document.querySelector("#passwordInput");
+// // let signUpButton = document.querySelector("#signUpBtn");
+// // let nameError = document.querySelector("#userNameErr")
+// // let emailError = document.querySelector("#EmailError")
+// // let userpassword = document.querySelector("#passwordInput")
+// // let passwordError = document.querySelector("#passwordError")
+// // let userAarry = [];
+
+// // if (localStorage.getItem("users")) {
+// //     userAarry = JSON.parse(localStorage.getItem("users"))
+// // }
+
+// // signUpButton.addEventListener("click", signUp)
+
+// // function signUp() {
+
+// //     // check if email exists
+// //     if (cheackUser()) {
+// //         Swal.fire({
+// //             position: "center",
+// //             icon: "error",
+// //             title: "Email already exists",
+// //             showConfirmButton: true,
+// //         })
+// //         return
+// //     }
+
+// //     // create user
+// //     let user = {
+// //         name: username.value,
+// //         email: userEmail.value,
+// //         password: password.value,
+// //     }
+
+// //     // save
+// //     userAarry.push(user)
+// //     localStorage.setItem("users", JSON.stringify(userAarry))
+
+// //     // success message
+// //     Swal.fire({
+// //         position: "center",
+// //         icon: "success",
+// //         title: "Account created successfully",
+// //         showConfirmButton: false,
+// //         timer: 1500
+// //     })
+// // }
 
 
-var users = [];
+// // username.addEventListener("input", function () {
+// //     ValidateuserName()
+// // })
 
-if (localStorage.getItem("data") != null) {
-    users = JSON.parse(localStorage.getItem("data"));
-}
+// // function ValidateuserName() {
+// //     let usernameRegex = /^[a-zA-Z0-9]{3,}$/
+// //     let isValid = usernameRegex.test(username.value)
+// //     username.classList.toggle("is-valid", isValid)
+// //     username.classList.toggle("is-novalid", !isValid)
+// //     nameError.classList.toggle("d-none", isValid)
+// // }
+// // userEmail.addEventListener("input", function () {
+// //     ValidateEmail()
+// // })
 
-var validInput = function (input) {
-    console.log(input);
+// // function ValidateEmail() {
+// //     let userEmailRegex = /^\S+@\S+\.\S+$/
+// //     let isValid = userEmailRegex.test(userEmail.value)
 
-    const regex = {
-        username: /^[A-Z][a-z]{2,6}$/,
-        Email: /^[a-z0-9-]{2,20}@(gmail)\.(com)$/,
-        password: /^[a-zA-Z0-9]{4,20}$/
+// //     userEmail.classList.toggle("is-valid", isValid)
+// //     userEmail.classList.toggle("is-invalid", !isValid)
+// //     emailError.classList.toggle("d-none", isValid)
+// // }
 
-    };
+// // userpassword.addEventListener("input", function () {
+// //     validatePassword()
+// // })
 
-    if (regex[input.id] && regex[input.id].test(input.value)) {
-        input.classList.add("is-valid");
-        input.classList.remove("is-invalid");
-    } else {
-        input.classList.add("is-invalid");
-        input.classList.remove("is-valid");
-    }
-};
+// // function validatePassword() {
+// //     let passwordRegex = /^.{6,}$/
+// //     let isValid = passwordRegex.test(userpassword.value)
 
-
-registerbtn.addEventListener('click', function () {
-    errorMsg.classList.replace('d-none', 'd-block')
-    const matchedUser = users.find(function (user) {
-        return user.Email === userEmail.value;
-    });
-    if (matchedUser) {
-        errorMsg.classList.replace("d-none", "d-block")
-        return;
-    }
+// //     userpassword.classList.toggle("is-valid", isValid)
+// //     userpassword.classList.toggle("is-invalid", !isValid)
+// //     passwordError.classList.toggle("d-none", isValid)
+// // }
 
 
-    console.log("functionDD");
+// let username = document.querySelector("#userNameInput");
+// let userEmail = document.querySelector("#emailInput");
+// let passwordInput = document.querySelector("#passwordInput");
+// let signUpButton = document.querySelector("#signUpBtn");
+// let nameError = document.querySelector("#userNameErr");
+// let emailError = document.querySelector("#EmailError");
+// let passwordError = document.querySelector("#passwordError");
 
-    var signUsers = {
-        userName: userName.value,
-        userEmail: userEmail.value,
-        userpassword: userpassword.value
-    }
-    users.push(signUsers)
-    localStorage.setItem("data", JSON.stringify(users))
-    succeesMsg.classList.replace("d-none", "d-block")
-    setTimeout(function () {
-        window.location.href = '../pages/login.html'
-    }, 1000)
+// let userAarry = JSON.parse(localStorage.getItem("users")) || [];
 
-    console.log(users);
+// signUpButton.addEventListener("click", signUp);
+// username.addEventListener("input", validateUserName);
+// userEmail.addEventListener("input", validateEmail);
+// passwordInput.addEventListener("input", validatePassword);
+
+// function signUp() {
+//     // Check email exists
+//     if (checkUser()) {
+//         Swal.fire({
+//             position: "center",
+//             icon: "error",
+//             title: "Email already exists",
+//             showConfirmButton: true,
+//         });
+//         return;
+//     }
+
+//     // Create user
+//     let user = {
+//         name: username.value,
+//         email: userEmail.value,
+//         password: passwordInput.value,
+//     };
+
+//     // Save to localStorage
+//     userAarry.push(user);
+//     localStorage.setItem("users", JSON.stringify(userAarry));
+
+//     Swal.fire({
+//         position: "center",
+//         icon: "success",
+//         title: "Account created successfully",
+//         showConfirmButton: false,
+//         timer: 1500,
+//     });
+
+//     // Reset form
+//     username.value = "";
+//     userEmail.value = "";
+//     passwordInput.value = "";
+//     username.classList.remove("is-valid", "is-invalid");
+//     userEmail.classList.remove("is-valid", "is-invalid");
+//     passwordInput.classList.remove("is-valid", "is-invalid");
+//     nameError.classList.add("d-none");
+//     emailError.classList.add("d-none");
+//     passwordError.classList.add("d-none");
+// }
+
+// // ✅ Validation functions
+// function validateUserName() {
+//     let usernameRegex = /^[a-zA-Z0-9]{3,}$/;
+//     let isValid = usernameRegex.test(username.value);
+//     username.classList.toggle("is-valid", isValid);
+//     username.classList.toggle("is-invalid", !isValid);
+//     nameError.classList.toggle("d-none", isValid);
+// }
+
+// function validateEmail() {
+//     let userEmailRegex = /^\S+@\S+\.\S+$/;
+//     let isValid = userEmailRegex.test(userEmail.value);
+//     userEmail.classList.toggle("is-valid", isValid);
+//     userEmail.classList.toggle("is-invalid", !isValid);
+//     emailError.classList.toggle("d-none", isValid);
+// }
+
+// function validatePassword() {
+//     let passwordRegex = /^.{6,}$/;
+//     let isValid = passwordRegex.test(passwordInput.value);
+//     passwordInput.classList.toggle("is-valid", isValid);
+//     passwordInput.classList.toggle("is-invalid", !isValid);
+//     passwordError.classList.toggle("d-none", isValid);
+// }
+
+// // ✅ Check if email exists
+// function checkUser() {
+//     return userAarry.some(u => u.email === userEmail.value);
+// }   
+
+
+
+// let signInLink = document.querySelector(".account a");
+
+// signInLink.addEventListener("click", function (e) {
+//   if (userEmail.value === "" || passwordInput.value === "") {
+//     e.preventDefault();
+//     alert("اكتب البيانات الأول");
+//   } else {
+//     // سيبه يروح عادي
+//     // أو ممكن تعمل redirect بنفسك:
+//     // window.location.href = "index.html";
+//   }
+// });
+
+
+
+
+// signUpButton.addEventListener("click", function (e) {
+//   e.preventDefault(); // يمنع الـ submit
+
+//   validateEmail();
+//   validatePassword();
+
+//   // ❌ لو فاضي
+//   if (userEmail.value === "" || passwordInput.value === "") {
+//     alert("اكتب البيانات الأول");
+//     return;
+//   }
+
+//   // ❌ لو فيه validation error
+//   if (
+//     !userEmail.classList.contains("is-valid") ||
+//     !passwordInput.classList.contains("is-valid")
+//   ) {
+//     alert("فيه Error في البيانات");
+//     return;
+//   }
+
+//   // ✅ لو كله تمام
+//   userAarry.push({
+//     email: userEmail.value,
+//     password: passwordInput.value,
+//   });
+
+//   localStorage.setItem("users", JSON.stringify(userAarry));
+
+//   // 🔥 يروح صفحة اللوجن
+//   window.location.href = "index.html";
+// });
+
+
+
+let username = document.querySelector("#userNameInput");
+let userEmail = document.querySelector("#emailInput");
+let passwordInput = document.querySelector("#passwordInput");
+let signUpButton = document.querySelector("#signUpBtn");
+
+let nameError = document.querySelector("#userNameErr");
+let emailError = document.querySelector("#EmailError");
+let passwordError = document.querySelector("#passwordError");
+
+let userAarry = JSON.parse(localStorage.getItem("users")) || [];
+
+// 🔹 Events
+signUpButton.addEventListener("click", function (e) {
+  e.preventDefault();
+  signUp();
 });
 
-form.addEventListener('submit', function (e) {
-    e.preventDefault();
+username.addEventListener("input", validateUserName);
+userEmail.addEventListener("input", validateEmail);
+passwordInput.addEventListener("input", validatePassword);
 
+// 🔹 Sign Up Function
+function signUp() {
+  validateUserName();
+  validateEmail();
+  validatePassword();
 
-})
-userName.addEventListener('input', () => {
-    validInput(userName);
-})
-userEmail.addEventListener('input', () => {
-    validInput(userEmail);
-})
-userpassword.addEventListener('input', () => {
-    validInput(userpassword);
-})
+  // empty check
+  if (
+    username.value === "" ||
+    userEmail.value === "" ||
+    passwordInput.value === ""
+  ) {
+    Swal.fire({
+      icon: "error",
+      title: "Please fill all fields",
+    });
+    return;
+  }
+
+  // validation check
+  if (
+    !username.classList.contains("is-valid") ||
+    !userEmail.classList.contains("is-valid") ||
+    !passwordInput.classList.contains("is-valid")
+  ) {
+    Swal.fire({
+      icon: "error",
+      title: "Invalid data",
+    });
+    return;
+  }
+
+  // email exists check
+  if (checkUser()) {
+    Swal.fire({
+      icon: "error",
+      title: "Email already exists",
+    });
+    return;
+  }
+
+  // create user
+  let user = {
+    name: username.value,
+    email: userEmail.value,
+    password: passwordInput.value,
+  };
+
+  userAarry.push(user);
+  localStorage.setItem("users", JSON.stringify(userAarry));
+
+  Swal.fire({
+    icon: "success",
+    title: "Account created successfully",
+    timer: 1500,
+    showConfirmButton: false,
+  });
+
+  setTimeout(() => {
+    window.location.href = "index.html";
+  }, 1500);
+}
+
+// 🔹 Validation
+function validateUserName() {
+  let regex = /^[a-zA-Z0-9]{3,}$/;
+  let isValid = regex.test(username.value);
+
+  username.classList.toggle("is-valid", isValid);
+  username.classList.toggle("is-invalid", !isValid);
+  nameError.classList.toggle("d-none", isValid);
+}
+
+function validateEmail() {
+  let regex = /^\S+@\S+\.\S+$/;
+  let isValid = regex.test(userEmail.value);
+
+  userEmail.classList.toggle("is-valid", isValid);
+  userEmail.classList.toggle("is-invalid", !isValid);
+  emailError.classList.toggle("d-none", isValid);
+}
+
+function validatePassword() {
+  let regex = /^.{6,}$/;
+  let isValid = regex.test(passwordInput.value);
+
+  passwordInput.classList.toggle("is-valid", isValid);
+  passwordInput.classList.toggle("is-invalid", !isValid);
+  passwordError.classList.toggle("d-none", isValid);
+}
+
+// 🔹 Check user exists
+function checkUser() {
+  return userAarry.some((u) => u.email === userEmail.value);
+}
