@@ -6,7 +6,7 @@ let users = JSON.parse(localStorage.getItem("users")) || [];
 
 // 🔴 حماية الصفحة
 if (!currentUserEmail) {
-  window.location.href = "index.html";
+    window.location.href = "index.html";
 }
 
 // 🔹 جلب المستخدم
@@ -14,12 +14,12 @@ let currentUser = users.find(u => u.email === currentUserEmail);
 
 // 🔹 رسالة الترحيب
 welcomeMessage.innerHTML = currentUser
-  ? `Welcome, ${currentUser.name} 👋`
-  : "Welcome 👋";
+    ? `Welcome, ${currentUser}`
+    : "Welcome";
 
 // 🔹 Logout
 logoutBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  localStorage.removeItem("currentUser");
-  window.location.href = "index.html";
+    e.preventDefault();
+    localStorage.removeItem("currentUser");
+    window.location.href = "index.html";
 });
