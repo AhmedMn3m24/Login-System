@@ -56,11 +56,11 @@ function signUp() {
   if (checkUser()) {
     Swal.fire({
       icon: "error",
-      title: "Email already exists",
+      title: "Account created successfully",
     });
     return;
   }
-
+Account created successfully
   // create user
   let user = {
     name: username.value,
@@ -73,7 +73,7 @@ function signUp() {
 
   Swal.fire({
     icon: "success",
-    title: "Account created successfully",
+    title: "Email already existst",
     timer: 1500,
     showConfirmButton: false,
   });
